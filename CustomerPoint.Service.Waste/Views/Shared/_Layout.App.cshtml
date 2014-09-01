@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+    string MainClass = "col-xs-12";
+    
+    if (IsSectionDefined("secondary"))
+    {
+        MainClass = "col-md-8 col-lg-9";
+    }
+}
+<div class="row">
+    <div class="@MainClass">
+        <ol role="breadcrumbs" class="breadcrumb">
+            <li><a href="/">Dashboard</a></li>
+            @if (IsSectionDefined("breadcrumb"))
+            {
+                <li><a href="~/">Waste services</a></li>
+                @RenderSection("breadcrumb", required: false)
+            }
+            </ol>
+        <div class="article">
+            @RenderBody()
+        </div>
+    </div>
+    @if (IsSectionDefined("secondary"))
+    {
+        <div class="col-md-4 col-lg-3 secondary">
+            @RenderSection("secondary", required: false)
+        </div>
+    }
+</div>
